@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour {
 	Vector3 playerYHeight;
 
 	bool moving;
-	float movementSpeed = 1;
+	float movementSpeed = 5;
 	float lastDistance, currentDistance, snapToDistance;
 
 	// Use this for initialization
@@ -42,7 +42,7 @@ public class PlayerMove : MonoBehaviour {
 				lastDistance = Vector3.Distance(player.transform.position,movPos); //distance between player and the destination
 			
 				Debug.Log ("Starting position: "+(player.transform.position));
-				Debug.Log ("Ending position: "+movPos);
+				Debug.Log ("Destination position: "+movPos);
 				player.transform.Translate(movementStep * Time.deltaTime * movementSpeed, Space.World);
 				moving = true;
 
@@ -54,17 +54,17 @@ public class PlayerMove : MonoBehaviour {
 			//Debug.Log ("last distance: "+lastDistance);
 
 			//animation
-			/*if(lastDistance < currentDistance){
+			if(lastDistance < currentDistance){
 				player.transform.position = movPos;
 				moving = false;
 			}else{
 				lastDistance = currentDistance;
-				player.transform.Translate(movPos*Time.deltaTime * movementSpeed, Space.World);
-			}*/
+				player.transform.Translate(movementStep * Time.deltaTime * movementSpeed, Space.World);
+			}
 
 			//instant move
-			player.transform.position = movPos;
-			moving = false;
+			//player.transform.position = movPos;
+			//moving = false;
 		}
 	}
 }
