@@ -36,8 +36,7 @@ public class PlayerMove : MonoBehaviour {
 				Debug.Log(hit.collider);*/
 
 				movPos = hit.point + playerYHeight; //destination
-				Vector3 playerToPointVect = (movPos-player.transform.position); //vector from player to destination
-				movementStep = playerToPointVect.normalized; //normalized vector
+				movementStep = (movPos-player.transform.position).normalized; //normalized vector
 				lastDistance = Vector3.Distance(player.transform.position,movPos); //distance between player and the destination
 			
 				Debug.Log ("Starting position: "+(player.transform.position));
