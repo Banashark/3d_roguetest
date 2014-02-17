@@ -34,7 +34,6 @@ public class PlayerMove : MonoBehaviour {
 				/*print("Hit environment");
 				Debug.Log(hit.point.x + " " + hit.point.y + " " + hit.point.z);
 				Debug.Log(hit.collider);*/
-				//movPos = new Vector3(hit.point.x - player.transform.position.x, hit.point.y + 0.5f - player.transform.position.y, hit.point.z - player.transform.position.z);
 
 				movPos = hit.point + playerYHeight; //destination
 				Vector3 playerToPointVect = (movPos-player.transform.position); //vector from player to destination
@@ -49,9 +48,6 @@ public class PlayerMove : MonoBehaviour {
 			}
 		}else if(moving){
 			currentDistance = Vector3.Distance(player.transform.position,movPos); //new distance between player's current position and the destination
-			//Debug.Log ("current position: "+(player.transform.position));
-			//Debug.Log ("current distance: "+currentDistance);
-			//Debug.Log ("last distance: "+lastDistance);
 
 			//animation
 			if(lastDistance < currentDistance){
@@ -61,10 +57,6 @@ public class PlayerMove : MonoBehaviour {
 				lastDistance = currentDistance;
 				player.transform.Translate(movementStep * Time.deltaTime * movementSpeed, Space.World);
 			}
-
-			//instant move
-			//player.transform.position = movPos;
-			//moving = false;
 		}
 	}
 }
