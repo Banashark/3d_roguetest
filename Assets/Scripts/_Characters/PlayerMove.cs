@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour {
 	Vector3 playerYHeight;
 
 	bool moving;
-	float movementSpeed = 5;
+	public float movementSpeed = 5;
 	float lastDistance, currentDistance, snapToDistance;
 
 	// Use this for initialization
@@ -41,7 +41,7 @@ public class PlayerMove : MonoBehaviour {
 			
 				Debug.Log ("Starting position: "+(player.transform.position));
 				Debug.Log ("Destination position: "+movPos);
-				player.transform.Translate(movementStep * Time.deltaTime * movementSpeed, Space.World);
+				player.transform.Translate(movementStep * Time.deltaTime * movementSpeed, Space.World); //one increment of the movement
 				moving = true;
 
 			}
@@ -49,12 +49,12 @@ public class PlayerMove : MonoBehaviour {
 			currentDistance = Vector3.Distance(player.transform.position,movPos); //new distance between player's current position and the destination
 
 			//animation
-			if(lastDistance < currentDistance){
+			if(lastDistance < currentDistance){ //if we're no longer moving towards the destination but away, complete movement
 				player.transform.position = movPos;
 				moving = false;
-			}else{
-				lastDistance = currentDistance;
-				player.transform.Translate(movementStep * Time.deltaTime * movementSpeed, Space.World);
+			}else{ //keep moving
+				lastDistance = currentDistance; //set the current distance as last distance for next update
+				player.transform.Translate(movementStep * Time.deltaTime * movementSpeed, Space.World); //increment movement
 			}
 		}
 	}
