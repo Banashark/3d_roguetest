@@ -49,7 +49,7 @@ public class PlayerMove : MonoBehaviour {
 			currentDistance = Vector3.Distance(player.transform.position,movPos); //new distance between player's current position and the destination
 
 			//animation
-			if(lastDistance < currentDistance){ //if we're no longer moving towards the destination but away, complete movement
+			if(currentDistance < .1f){ //if player is <.1 away
 				player.transform.position = movPos;
 				moving = false;
 			}else{ //keep moving
